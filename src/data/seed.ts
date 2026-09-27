@@ -1,4 +1,4 @@
-import { Device, Alert, ITAsset, Software, Maintenance, AuditLog, TicketReference, RemoteAction, RemoteActionExecution, Secretariat, Report, Organization, TelemetryPoint } from '../types';
+import { Device, Alert, ITAsset, Software, Maintenance, AuditLog, TicketReference, RemoteAction, RemoteActionExecution, Secretariat, Report, Organization, TelemetryPoint, LiveDeviceActivity } from '../types';
 
 export const organization: Organization = {
   id: 'org-001',
@@ -371,3 +371,41 @@ export const maintenances = generateMaintenances(devices);
 export const auditLogs = generateAuditLogs();
 export const tickets = generateTickets(devices);
 export const actionExecutions = generateActionExecutions();
+
+// Generate live device activity data for monitoring panel
+function generateLiveDeviceActivity(): LiveDeviceActivity[] {
+  const applications = [
+    'Google Chrome',
+    'Microsoft Word',
+    'Microsoft Excel',
+    'Microsoft Outlook',
+    'NEXUNITAS',
+    'NEXOBRAS',
+    'AutoCAD',
+    'Windows Explorer',
+    'LibreOffice Writer',
+    'Firefox',
+    'Adobe Reader',
+    'Zoom',
+  ];
+
+  return devices
+    .filter(d => d.status === 'online' || d.status === 'attention' || d.status === 'critical')
+    .map(d => ({
+      deviceId: d.id,
+      hostname: d.hostname,
+      userName: d.currentUser,
+      secretariatName: d.secretariat,
+      applicationName: randomFrom(applications),
+      windowTitle: undefined, // Future: real window title from agent
+      cpuUsage: d.cpuUsage,
+      memoryUsage: d.ramUsage,
+      diskUsage: d.storageUsage,
+      online: d.status === 'online' || d.status === 'attention' || d.status === 'critical',
+      healthStatus: d.status,
+      lastHeartbeat: d.lastHeartbeat,
+      activeSince: new Date(Date.now() - Math.floor(Math.random() * 120) * 60000).toISOString(),
+    }));
+}
+
+export const liveDeviceActivity = generateLiveDeviceActivity();

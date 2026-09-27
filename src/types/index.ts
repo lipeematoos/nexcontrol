@@ -186,3 +186,28 @@ export interface Report {
   category: string;
   lastGenerated?: string;
 }
+
+// Live monitoring types
+export interface LiveDeviceActivity {
+  deviceId: string;
+  hostname: string;
+  userName: string;
+  secretariatName: string;
+  applicationName: string;
+  windowTitle?: string;
+  cpuUsage: number;
+  memoryUsage: number;
+  diskUsage: number;
+  online: boolean;
+  healthStatus: DeviceStatus;
+  lastHeartbeat: string;
+  activeSince: string;
+}
+
+export interface LiveMonitoringState {
+  devices: LiveDeviceActivity[];
+  isConnected: boolean;
+  isDemo: boolean;
+  lastUpdate: string;
+  totalOnline: number;
+}
