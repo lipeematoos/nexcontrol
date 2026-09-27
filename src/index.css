@@ -1,1 +1,56 @@
 @import "tailwindcss";
+
+@theme {
+  --color-bg-primary: #1e1e1e;
+  --color-bg-secondary: #252526;
+  --color-bg-tertiary: #2a2d2e;
+  --color-bg-sidebar: #181818;
+  --color-bg-hover: #2a2d2e;
+  --color-bg-active: #37373d;
+  --color-border: #3c3c3c;
+  --color-border-light: #4a4a4a;
+  --color-accent: #007acc;
+  --color-accent-hover: #0e639c;
+  --color-text-primary: #cccccc;
+  --color-text-secondary: #969696;
+  --color-text-muted: #6a6a6a;
+  --color-success: #4ec9b0;
+  --color-warning: #dcdcaa;
+  --color-danger: #f44747;
+  --color-info: #569cd6;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #424242 #1e1e1e;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #424242;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: #1e1e1e;
+  color: #cccccc;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-mono {
+  font-family: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+}
